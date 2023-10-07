@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "paths": {
+      "@typings/*": ["typings/*"],
+      "@config/*": ["./src/config/*"],
+      "@decorator/*": ["./src/decorator/*"],
+      "@filters/*": ["./src/filters/*"],
+      "@guard/*": ["./src/guard/*"],
+      "@interceptors/*": ["./src/interceptors/*"],
+      "@middleware/*": ["./src/middleware/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@pipe/*": ["./src/pipe/*"],
+      "@tools/*": ["./src/tools/*"],
+      "@utils/*": ["./src/utils/*"]
+    }
+  }
+}
