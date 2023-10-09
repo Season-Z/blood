@@ -9,6 +9,7 @@ import { AppService } from './app.service';
 import { ArticleModule } from './modules/article/article.module';
 import { AuthGuard } from './guard/auth.guard';
 import { UserModule } from './modules/user/user.module';
+import { ProjectModule } from './modules/project/project.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { UserModule } from './modules/user/user.module';
     }),
     UserModule,
     ArticleModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [

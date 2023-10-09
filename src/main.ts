@@ -1,9 +1,16 @@
+/*
+ * @Author: zhouxishun
+ * @Date: 2023-10-07 14:31:54
+ * @LastEditors: zhouxishun
+ * @LastEditTime: 2023-10-07 16:23:12
+ * @Description:
+ */
 import { join } from 'path';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { Logger } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import requestIp from 'request-ip';
+// import requestIp from 'request-ip';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
@@ -41,7 +48,7 @@ async function bootstrap() {
   // web安全方面的防范，优化
   app.use(helmet());
   // 获取ip地址，因为反向代理后无法获取客户端的ip地址。也可以请求头设置 x-forwarded-for
-  app.use(requestIp.mw());
+  // app.use(requestIp.mw());
 
   const options = new DocumentBuilder()
     .setTitle('season')
