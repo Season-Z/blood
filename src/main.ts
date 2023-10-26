@@ -1,10 +1,3 @@
-/*
- * @Author: zhouxishun
- * @Date: 2023-10-07 14:31:54
- * @LastEditors: zhouxishun
- * @LastEditTime: 2023-10-07 16:23:12
- * @Description:
- */
 import { join } from 'path';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -62,7 +55,7 @@ async function bootstrap() {
   SwaggerModule.setup('/doc', app, document);
 
   await app.listen(3000, () => {
-    Logger.log(`服务已经启动,请访问:http://wwww.localhost:${3000}`);
+    Logger.log(`服务已经启动,请访问:http://localhost:3000/doc/`);
   });
 }
 bootstrap();

@@ -15,6 +15,7 @@ import {
 import { ProjectEntity } from './project.entity';
 import { ProjectService } from './project.service';
 import { BaseProjectDto } from './project.dto';
+import { UserDecorator } from '@decorator/user.decorator';
 
 @ApiBearerAuth()
 @ApiTags('project')
@@ -34,7 +35,10 @@ export class ProjectController {
   @ApiResponse({ status: 200, description: '返回数据' })
   @UsePipes(new ValidationPipe())
   @Post()
-  async create(@Body() projectData: BaseProjectDto) {
-    return this.projectService.create(projectData);
+  async create(
+    @UserDecorator('id') id: number,
+    @Body() projectData: BaseProjectDto,
+  ) {
+    return this.projectService.create(id, projectData);
   }
 }

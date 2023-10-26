@@ -1,26 +1,19 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
-  CreateDateColumn,
-  UpdateDateColumn,
   BeforeInsert,
-  ManyToMany,
-  JoinTable,
   OneToMany,
+  JoinTable,
+  JoinColumn,
+  ManyToMany,
 } from 'typeorm';
 import * as argon2 from 'argon2';
-import { ArticleEntity } from '../article/article.entity';
+import { ProjectEntity } from '@modules/project/project.entity';
+import { BaseEntity } from '@modules/base/base.entity';
+import { ArticleEntity } from '@modules/article/article.entity';
 
 @Entity('user')
-export class UserEntity {
-  @PrimaryGeneratedColumn({
-    type: 'int',
-    name: 'id',
-    comment: '主键id',
-  })
-  id: number;
-
+export class UserEntity extends BaseEntity {
   @Column({
     type: 'varchar',
     nullable: false,
@@ -38,33 +31,15 @@ export class UserEntity {
   })
   password: string;
 
-  @Column({
-    type: 'int',
-    nullable: true,
-    comment: '年龄',
-  })
-  age: number;
-
-  @CreateDateColumn({
-    type: 'timestamp',
-    nullable: false,
-    name: 'created_at',
-    comment: '创建时间',
-  })
-  createdAt: Date;
-
-  @UpdateDateColumn({
-    type: 'timestamp',
-    nullable: false,
-    name: 'updated_at',
-    comment: '更新时间',
-  })
-  updateAt: Date;
-
   @BeforeInsert()
   async hashPassword() {
     this.password = await argon2.hash(this.password);
   }
+
+  @OneToMany(() => ProjectEntity, (project) => project.user, {
+    cascade: true,
+  })
+  projects: ProjectEntity[];
 
   @ManyToMany(() => ArticleEntity)
   @JoinTable()

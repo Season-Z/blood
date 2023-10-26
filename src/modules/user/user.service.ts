@@ -40,6 +40,7 @@ export class UserService {
 
     const newPassword = await argon2.hash(password);
     Reflect.set(dto, 'password', newPassword);
+    Reflect.set(dto, 'projects', []);
 
     return await this.userRepository.save(dto);
   }

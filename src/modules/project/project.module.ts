@@ -1,4 +1,5 @@
 import {
+  Global,
   MiddlewareConsumer,
   Module,
   NestModule,
@@ -8,11 +9,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthMiddleware } from '@middleware/auth.middleware';
 import { ProjectEntity } from './project.entity';
 import { ProjectService } from './project.service';
-import { ProjectController } from './project.contorller';
+import { ProjectController } from './project.controller';
 import { UserModule } from '@modules/user/user.module';
+import { UserEntity } from '@modules/user/user.entity';
 
+@Global()
 @Module({
-  imports: [TypeOrmModule.forFeature([ProjectEntity]), UserModule],
+  imports: [TypeOrmModule.forFeature([ProjectEntity, UserEntity]), UserModule],
   providers: [ProjectService],
   controllers: [ProjectController],
   exports: [ProjectService],

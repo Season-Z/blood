@@ -6,10 +6,10 @@ import { Connection } from 'typeorm';
 import { resolve } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ArticleModule } from './modules/article/article.module';
 import { AuthGuard } from './guard/auth.guard';
 import { UserModule } from './modules/user/user.module';
 import { ProjectModule } from './modules/project/project.module';
+import { BuildModule } from './modules/build/build.module';
 
 @Module({
   imports: [
@@ -33,8 +33,8 @@ import { ProjectModule } from './modules/project/project.module';
       inject: [ConfigService],
     }),
     UserModule,
-    ArticleModule,
     ProjectModule,
+    BuildModule,
   ],
   controllers: [AppController],
   providers: [
